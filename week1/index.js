@@ -40,6 +40,17 @@ console.log("	Signature2:", sig2.toString("hex"));
 // end Sign the message
 
 
+// Verify
+
+console.log(`3) Bob verifyed by 3 elements ("message digest", "signature", and Alice's "publicKey"):`);
+let verified = secp256k1.verify(digested, sig, publicKey);
+console.log("	verified:", verified);
+
+// => true
+
+
+
+
 function digest(str, algo = "sha256") {
   return crypto.createHash(algo).update(str).digest();
 }
