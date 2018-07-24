@@ -2,6 +2,7 @@
 
 
 import expectThrow from './helpers/expectThrow';
+import {assertBigNumberEqual} from "./helpers/asserts";
 
 const bonus = artifacts.require('bonus.sol');
 
@@ -21,7 +22,7 @@ contract('bonus', function(accounts) {
         const bonusInstance = await bonus.new({from: accounts[0]});
         let enterTime = now();
         await bonusInstance.makeOrder(12123, enterTime, {from: accounts[1]});
-        assert.equal(await bonusInstance.balanceOf(accounts[1]), 0);
+        assertBigNumberEqual(await bonusInstance.balanceOf(accounts[1]), 0);
 
     });
 
@@ -30,7 +31,8 @@ contract('bonus', function(accounts) {
         let enterTime = now();
         await bonusInstance.makeOrder(12123, enterTime, {from: accounts[1]});
         await bonusInstance.compliteOrder(accounts[1], {from: accounts[0]});
-        assert.equal(await bonusInstance.balanceOf(accounts[1]), 1);
+        assertBigNumberEqual(await bonusInstance.balanceOf(accounts[1]), 1);
+        assertBigNumberEqual(await bonusInstance.balanceOf(accounts[0]), 41);
 
     })
 

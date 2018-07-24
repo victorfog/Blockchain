@@ -19,34 +19,19 @@ contract Bonus is BasicToken {
     }
     mapping (address => order) allOrders;
 
-    function makeOrder(uint _cost, uint _time) public {
-        allOrders[msg.sender] = order(_cost, _time, false);
+    function makeOrder(uint _cost, uint _timeToGet) public {
+        require(_timeToGet >= now - 1 hours);
+        allOrders[msg.sender] = order(_cost, _timeToGet, false);
     }
-    
+
     function compliteOrder(address _user) public {
-        // todo: сделать, чтобы деньги переводились только с owner
-        transfer(_user, 1);
-        allOrders[msg.sender].done = true;
+        require(msg.sender==owner); //выполняется проверка что msg.sender это владелец контракта
+        order storage _order = allOrders[_user];
+        if (_order.timeToGet >= now - 30 minutes) {
+            transfer(_user, 1);
+        }
+
+        _order.done = true;
+
     }
-
-
-
-//
-//    function freeze(uint thawTS) public {
-//        require(m_freeze_info[msg.sender] <= now);
-//        m_freeze_info[msg.sender] = thawTS;
-//    }
-//
-//    function transferFrom(address _from, address _to, uint256 _value) public returns (bool){
-//        require(m_freeze_info[_from] <= now);
-//        return super.transferFrom(_from, _to, _value);
-//
-//    }
-//
-//    function transfer(address _to, uint256 _value) public returns (bool) {
-//        require(m_freeze_info[msg.sender] <= now);
-//        return super.transfer(_to, _value);
-//    }
-//
-//    mapping (address => uint) public m_freeze_info;
 }
