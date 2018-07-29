@@ -99,7 +99,7 @@ contract('anonymousVotingTest', function(accounts) {
 
         //when
         await sleep(1000);
-        await sleep(1000);
+        await sleep(2000);
         await expectError(votingContract.vote(true, {from: accounts[0]}));
     });
 });
