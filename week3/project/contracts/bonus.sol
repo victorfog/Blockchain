@@ -26,12 +26,12 @@ contract Bonus is BasicToken {
 
     function compliteOrder(address _user) public {
         require(msg.sender==owner); //выполняется проверка что msg.sender это владелец контракта
-        order storage _order = allOrders[_user];
+        order storage _order = allOrders[_user]; //создаю _order в который помещаю структуру из массива allOrders по ключу msg.sender
         if (_order.timeToGet >= now - 30 minutes) {
             transfer(_user, 1);
         }
 
-        _order.done = true;
+        _order.done = true; //присвоение значения true переменной done структуры order из массива allOrders по ключу msg.sender
 
     }
 }
