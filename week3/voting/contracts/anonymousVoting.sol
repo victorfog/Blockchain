@@ -8,7 +8,7 @@ contract anonymousVoting {
         uint32 getSecretPhraseDate;
         uint32 endDate;
     }
-    
+
     structVoting voting;
     mapping(bool => address[]) votes;
     mapping(address => bool) usersDb;
