@@ -37,12 +37,15 @@ contract('anonymousVotingTest', function(accounts) {
         const votingContract = await voting.new(currect, currect+2, currect+4);
 
         //when
-        await votingContract.vote(true, {from: accounts[1]});
+        let voteHash = await votingContract.hashVote(true, "xxx", {from: accounts[1]});
+        await votingContract.vote(voteHash, {from: accounts[1]});
 
         //then
         await sleep(2000);
 
         await sleep(2000);
+        await votingContract.openvote(true, "xxx", {from: accounts[1]});
+
         let cons;
         let pros;
         [cons, pros] = await votingContract.stats();
@@ -56,20 +59,37 @@ contract('anonymousVotingTest', function(accounts) {
         const votingContract = await voting.new(currect, currect+2, currect+4);
 
         //when
-        await votingContract.vote(true, {from: accounts[0]});
+        let voteHashFirst = await votingContract.hashVote(false, "xxx", {from: accounts[0]});
+        let voteHashSecond = await votingContract.hashVote(true, "yyy", {from: accounts[1]});
 
-        await votingContract.vote(false, {from: accounts[1]});
+        await votingContract.vote(voteHashFirst, {from: accounts[0]});
+        await votingContract.vote(voteHashSecond, {from: accounts[1]});
 
         await sleep(2000);
 
         //then
         await sleep(2000);
+        await votingContract.openvote(false, "xxx", {from: accounts[0]});
+        await votingContract.openvote(true, "yyy", {from: accounts[1]});
 
         let cons;
         let pros;
         [cons, pros] = await votingContract.stats();
         assertBigNumberEqual(cons, 1);
         assertBigNumberEqual(pros, 1);
+    });
+
+    it('test voting. many votes should fail', async function() {
+        //given
+        let currect = now();
+        const votingContract = await voting.new(currect, currect+2, currect+4);
+
+        //when
+        let voteHashFirst = await votingContract.hashVote(false, "xxx", {from: accounts[0]});
+        let voteHashSecond = await votingContract.hashVote(true, "yyy", {from: accounts[0]});
+
+        await votingContract.vote(voteHashFirst, {from: accounts[0]});
+        await expectError(votingContract.vote(voteHashSecond, {from: accounts[0]}));
     });
 
     it('test voting is not available yet', async function() {
