@@ -15,7 +15,7 @@ contract Ticket is Ownable {
 //
 //    }
 
-    //constructor() public Ownable() {} //fixme  ести не собирется раскоментить
+    //constructor() public Ownable() {} //fixme  ести не собирается раскоментить
 
     modifier isStarted() {
         require(isStart == true);
