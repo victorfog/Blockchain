@@ -706,7 +706,7 @@ contract ERC721Token is ERC721, ERC721BasicToken {
   }
 
   // Расширияем:
-
+//
 //  uint price = 10 finney;
 //  address owner = 0x51A068Ec6bc9b36257795441493DC230FBEfF2e1;
 //

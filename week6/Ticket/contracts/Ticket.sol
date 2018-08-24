@@ -3,7 +3,7 @@ pragma solidity ^0.4.24;
 //import "./ERC721Basic.sol";
 import "./Ownable.sol";
 
-contract Tickets is Ownable {
+contract Ticket is Ownable {
     address public owner;
     uint public allTicket = 206;
     uint constant ticketPrice = 15 finney;
@@ -22,7 +22,7 @@ contract Tickets is Ownable {
         _;
     }
 
-    function start(address _selfAddress) onlyOwner public {
+    function start(address _selfAddress) onlyOwner public { //
         require(isStart == false);
         isStart = true;
         selfAddress = _selfAddress;
@@ -30,7 +30,7 @@ contract Tickets is Ownable {
 
     mapping (address => bytes32[]) soul;
 
-    function ticket(address _owner, uint _numberOfTickets) payable isStarted public {
+    function buy(address _owner, uint _numberOfTickets) payable isStarted public {
         require(_numberOfTickets > 0);
         require(_numberOfTickets <= allTicket);
         uint _cost = _numberOfTickets * ticketPrice;
@@ -40,19 +40,18 @@ contract Tickets is Ownable {
         _owner = msg.sender;
 
         for(uint i = 0; i < _numberOfTickets; i++) {
-            bytes32 token = hashTicket(_owner, allTicket); // remove _numberOfTickets
+            bytes32 token = hash(_owner, allTicket); // remove _numberOfTickets
             soul[_owner].push(token);
             allTicket--;
         }
 
     }
 
-    function hashTicket(address _owner, uint _allTicket) public view returns(bytes32) { //remove uint _numberOfTickets; pure to view
+    function hash(address _owner, uint _allTicket) public view returns(bytes32) { //remove uint _numberOfTickets; pure to view
         return keccak256(abi.encodePacked(_owner, _allTicket, selfAddress)); //remplace _numberOfTickets to _allTicket
     }
 
-
-    function testTickets(bytes32 _ticketId, address _ticketOwn) public view returns(bool){
+    function test(bytes32 _ticketId, address _ticketOwn) public view returns(bool){
         //bool ansver = false;
         bytes32[] memory _ticketList = soul[_ticketOwn];
         for(uint i = 0; i< _ticketList.length; i++ ) {
@@ -62,5 +61,4 @@ contract Tickets is Ownable {
         }
         return false;
     }
-
 }
