@@ -4,7 +4,6 @@ pragma solidity ^0.4.24;
 import "./Ownable.sol";
 
 contract Ticket is Ownable {
-    address public owner;
     uint public allTicket = 206;
     uint constant ticketPrice = 15 finney;
     bool isStart = false;
@@ -28,14 +27,17 @@ contract Ticket is Ownable {
         selfAddress = _selfAddress;
     }
 
+    function withdraw() onlyOwner public {
+        owner.transfer(selfAddress.balance);
+    }
+
     mapping (address => bytes32[]) soul;
 
     function buy(address _owner, uint _numberOfTickets) payable isStarted public {
-        require(_numberOfTickets > 0);
-        require(_numberOfTickets <= allTicket);
-        uint _cost = _numberOfTickets * ticketPrice;
-        require(msg.value >= _cost);
-
+        require(_numberOfTickets > 0, "xxx");
+        require(_numberOfTickets <= allTicket, "yyy");
+        uint _cost = calculatePrice(_numberOfTickets);
+        require(msg.value >= _cost, "zzz");
 
         _owner = msg.sender;
 
@@ -44,7 +46,10 @@ contract Ticket is Ownable {
             soul[_owner].push(token);
             allTicket--;
         }
+    }
 
+    function calculatePrice(uint _numberOfTickets) public pure returns(uint) {
+        return _numberOfTickets * ticketPrice;
     }
 
     function hash(address _owner, uint _allTicket) public view returns(bytes32) { //remove uint _numberOfTickets; pure to view
