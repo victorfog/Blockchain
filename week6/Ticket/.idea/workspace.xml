@@ -14,29 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Ticket.sol" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Ticket.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/Ticket.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+            <state relative-caret-position="475">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ownable.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/Ownable.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Ticket.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Ticket.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/Ticket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <state relative-caret-position="493">
+              <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -44,8 +35,8 @@
       <file leaf-file-name="asserts.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/helpers/asserts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="85">
+              <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -212,9 +203,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49833888" visible="true" weight="0.26190478" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49833888" visible="true" weight="0.26190478" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
@@ -222,7 +212,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32923076" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info id="Structure" order="1" sideWeight="0.5007728" side_tool="true" weight="0.25885227" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.35268816" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.35268816" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" sideWeight="0.5016611" side_tool="true" weight="0.26190478" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -518,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/helpers/asserts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/helpers/typeExt.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -535,17 +518,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/Ticket.js">
+    <entry file="file://$PROJECT_DIR$/contracts/Ticket.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        <state relative-caret-position="475">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/Ticket.sol">
+    <entry file="file://$PROJECT_DIR$/test/helpers/asserts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+        <state relative-caret-position="85">
+          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Ticket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
         </state>
       </provider>
     </entry>
