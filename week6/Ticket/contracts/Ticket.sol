@@ -49,6 +49,7 @@ contract Ticket is Ownable {
     }
 
     function calculatePrice(uint _numberOfTickets) public pure returns(uint) {
+        require(_numberOfTickets > 0, "xxx");
         return _numberOfTickets * ticketPrice;
     }
 
