@@ -16,9 +16,10 @@ contract MarketPlace {
     }
 
     struct oneOrder {// планируется для отслеживания подтверждения, что все получили чего хотели.
+        //uint OrderID;
         uint FileID;
         uint SellerID;
-        uint BayerID
+        uint BayerID;
         bool OwnerProof; // согласие завершение сделки со стороны владельца ресурса
         bool BayerProof; // согласие завершение сделки со стороны покупателя
         uint Amount; // сумма для перевода
@@ -27,7 +28,13 @@ contract MarketPlace {
 
     mapping(address => sFile[]) dbFile;
     mapping(address => uint) deposit;
-    mapping(uint => oneOrder[]) ordersDb;
+   //  mapping(uint => oneOrder[]) ordersDb; // гон я не смогу использовать так как не смогу получать длнну мапинга.
+
+    oneOrder[] oneOrders;
+    mapping(address => uint) ownerOrdersID;
+    mapping(address => uint) bayersOrdersID;
+
+
 
     address[] allVendorsAtTheCurrentMoment; //todo
 
@@ -45,16 +52,6 @@ contract MarketPlace {
         //todo log file added event
     }
 
-//    function search(address _SellerID, bytes32 _SwarmHash) view returns (uint, bool){
-//        sFile[] memory _searchSource = dbFile[_sellerAddress];
-//        for (uint i = 0; i < _searchSource.length; i++) {
-//            if (_searchSource[i].SwarmHash == _SwarmHash) {
-//                return (i, true);
-//            }
-//        }
-//
-//        return (0, false);
-//    }
 
     function list() public view returns (sFile[]) {
         sFile[] memory _allfiles;
@@ -73,18 +70,8 @@ contract MarketPlace {
     }
 
     function createOrder(address _addressSeller, uint _FileID ) payable {
-        // todo какая-то проверка на что-то
-
-//        uint _modelID;
-//        bool _err;
-//        uint _imodelID;
-//
-//        (_imodelID, _err) = search(_address, _modelHash); // функция search выключина
-//    require(_modelID ==)
-
-
-
-
+        // todo проверка ссуммы стоимости модели
+        oneOrders.push()
 
     }
 

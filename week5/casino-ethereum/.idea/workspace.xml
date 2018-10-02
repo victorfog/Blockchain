@@ -55,8 +55,8 @@
       <file leaf-file-name="Casino.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/Casino.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+            <state relative-caret-position="265">
+              <caret line="17" column="43" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -430,6 +430,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2741148" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -768,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Casino.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+        <state relative-caret-position="265">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="43" />
         </state>
       </provider>
     </entry>
