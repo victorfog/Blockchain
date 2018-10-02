@@ -26,7 +26,9 @@ contract MarketPlace {
     }
 
 
-    mapping(address => sFile[]) dbFile;
+   //  mapping(address => sFile[]) dbFile;
+    sFile[] dbFiles;
+    mapping(address => uint[]) sellerFileIDs;
     mapping(address => uint) deposit;
    //  mapping(uint => oneOrder[]) ordersDb; // гон я не смогу использовать так как не смогу получать длнну мапинга.
 
@@ -35,20 +37,21 @@ contract MarketPlace {
     mapping(address => uint) bayersOrdersID;
 
 
-
     address[] allVendorsAtTheCurrentMoment; //todo
 
     function addFile(string _name, bytes32 _Hash, bytes32 _SwarmHash, uint _Price, string _Description) {
-        uint _fileCount = dbFile[msg.sender].length;
+        uint _fileCount = sellerFileIDs[msg.sender].length;
         uint _SellerID;
         if (_fileCount == 0) {
-            _SellerID = allVendorsAtTheCurrentMoment.push(msg.sender); //тебе нужны эта хрень
+            _SellerID = allVendorsAtTheCurrentMoment.push(msg.sender);
         } else {
-            _SellerID = dbFile[msg.sender][0].SellerID;
+            sFile[] memory sellerFilesIDs = sellerFileIDs[msg.sender];
+            sFile sellerFirstFileID = sellerFilesIDs[0];
+            _SellerID = dbFiles[sellerFirstFileID].SellerID;
         }
 
-        uint _FileID = dbFile[msg.sender].length;
-        dbFile[msg.sender].push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID));
+        uint _FileID = dbFiles.length;
+        dbFiles.push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID));
         //todo log file added event
     }
 
@@ -58,7 +61,7 @@ contract MarketPlace {
 
         for (uint i = 0; i < allVendorsAtTheCurrentMoment.length; i++) {
             address _ownerAddress = allVendorsAtTheCurrentMoment[i];
-            sFile[] memory _ownerFiles = dbFile[_ownerAddress];
+            sFile[] memory _ownerFiles = dbFile[_ownerAddress]; //todo dbfile по адресу владельца ничего не выдает надо читать даные с
 
             for (uint j = 0; j < _ownerFiles.length; j++) {
                 _allfiles.push(_ownerFiles[j]);
