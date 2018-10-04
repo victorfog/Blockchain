@@ -12,6 +12,7 @@ contract MarketPlace {
         string Description;
         uint FileID;
         uint SellerID;
+        address Owner;
         //todo категории
     }
 
@@ -19,8 +20,10 @@ contract MarketPlace {
         //uint OrderID;
         uint FileID;
         address BayerID;
-        bool OwnerProof; // согласие завершение сделки со стороны владельца ресурса
-        bool BayerProof; // согласие завершение сделки со стороны покупателя
+        bool OwnerApprove; // согласие завершение сделки со стороны владельца ресурса
+        bool BayerApprove; // согласие завершение сделки со стороны покупателя
+        uint FixPrise; // стоимость для фиксирования цены
+        bool isPayed;
 
 
         // берем из dbFiles[oneOrder.FileID]
@@ -36,13 +39,13 @@ contract MarketPlace {
     //  mapping(address => sFile[]) dbFile;
     sFile[] dbFiles;
     mapping(address => uint[]) sellerFileIDs;
-    mapping(address => uint) deposit;
+   // mapping(address => uint) deposit;
 
-    oneOrder[] oneOrders;
+    oneOrder[] allOrders;
     mapping(uint => address) ownerOrdersID; //fixme записть заказов хромает надо сделать приятней, и ниже тоже
     mapping(uint => address) bayersOrdersID; //fixme да и тут
 
-    address[] allVendorsAtTheCurrentMoment; //todo
+    address[] allVendorsAtTheCurrentMoment; // для проверки: есть ли такой продавец
 
     function addFile(string _name, bytes32 _Hash, bytes32 _SwarmHash, uint _Price, string _Description) {
         uint _fileCount = sellerFileIDs[msg.sender].length;
@@ -53,15 +56,15 @@ contract MarketPlace {
             uint[] memory sellerFilesIDs = sellerFileIDs[msg.sender];
             uint sellerFirstFileID = sellerFilesIDs[0];
             _SellerID = dbFiles[sellerFirstFileID].SellerID;
-        } //fixme
+        }
 
         uint _FileID = dbFiles.length;
-        dbFiles.push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID));
-        sellerFileIDs.push(_FileID);
+        dbFiles.push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID, msg.sender));
+        sellerFileIDs(msg.sender) = _FileID;
         //todo log file added event
     }
 
-    function list() public view returns (sFile[]) {
+    function list() public view returns(sFile[]) {
         sFile[] memory _allfiles;
         for (uint i = 0; i < dbFiles.length; i++) {
             _allfiles.push(dbFiles[i]);
@@ -74,30 +77,54 @@ contract MarketPlace {
 
     function createOrder(uint _FileID) payable {
         // todo проверка ссуммы стоимости модели
-        sFile BayFile = dbFiles[_FileID];
+        sFile memory BayFile = dbFiles[_FileID];
         require(BayFile.Price == msg.value);
-        deposits[msg.sender] += msg.value;
-        uint _orderID = oneOrders.push(oneOrder(_FileID, msg.sender, false, false));
-        ownerOrdersID[_orderID]; // fixme исправить !!!!
-        bayersOrdersID[_orderID];// fixme исправить !!!!
+//        deposits[msg.sender] += msg.value;
+        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false));
+        ownerOrdersID[_orderID];
+        // fixme исправить !!!!
+        bayersOrdersID[_orderID];
+        // fixme исправить !!!!
 
     }
 
-    function approveOrder (uint _orderID, bool _approve){
-        oneOrder _order = oneOrders[_orderID];
-        sFile _fileInfo = dbFiles(_order.FileID);
-        _fileInfo.SellerID;
 
-        // fixme надо настроить мапы "ownerOrdersID" "bayersOrdersID" или еще как-то получить адрес владельца!!!!!!!
+    function approveOrder(uint _orderID, bool _approve){
+        oneOrder storage _order = allOrders[_orderID];
+        sFile memory _fileInfo = dbFiles(_order.FileID);
+        address _owner = _fileInfo.Owner;
 
-        if (msg.sender == _order.BayerID){
-            oneOrders[_orderID]
-
-        }else { (msg.sender == _)
-
+        if (msg.sender == _order.BayerID) {
+            _order.BayerProof = _approve;
         }
-
-
+        if (msg.sender == _owner) {
+            _order.Owner = _approve; //todo не передумывать ????
+        }
+        //todo если она true вызвать closeOrder
+         closeOrder(_orderID);
     }
 
+    function closeOrder(uint _orderID) private {
+        oneOrder storage _order = allOrders[_orderID];
+        require(_order.isPayed == false, "the order has been already payed");
+
+        uint amount = _order.FixPrise;
+        address _owner = dbFiles[_order.FileID].Owner;
+        require(_order.OwnerApprove == true);
+        require(_order.BayerApprove == true);
+
+        _order.isPayed = true;
+        _owner.transfer(amount);
+    }
+
+    function searchOrder(address _lookingFor, uint _fileID) view returns(uint) {
+        oneOrder memory _order;
+        for (uint i=0; i < allOrders.length; i++) {
+            _order = allOrders[i];
+            if(_order.FileID == _fileID){
+                return _order.BayerID;
+            }
+            // кажись так цикл не остановить ((
+        }
+    }
 }
