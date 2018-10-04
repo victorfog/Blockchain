@@ -17,8 +17,11 @@
       <file leaf-file-name="MarketPlace.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="70" column="25" lean-forward="true" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
+            <state relative-caret-position="520">
+              <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+              <folding>
+                <element signature="n#!!block;n#list#0;n#MarketPlace#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,6 +126,9 @@
       </list>
     </option>
   </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -140,20 +146,20 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31384614" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info id="Structure" order="1" sideWeight="0.51007557" side_tool="true" visible="true" weight="0.27106228" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.18564102" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" sideWeight="0.5016026" side_tool="true" weight="0.25274727" />
+      <window_info id="Favorites" order="2" sideWeight="0.51007557" side_tool="true" weight="0.27106228" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +173,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!block;n#list#0;n#MarketPlace#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -268,8 +277,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="70" column="25" lean-forward="true" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
+        <state relative-caret-position="520">
+          <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!block;n#list#0;n#MarketPlace#0" />
+          </folding>
         </state>
       </provider>
     </entry>

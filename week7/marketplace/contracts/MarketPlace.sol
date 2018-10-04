@@ -18,24 +18,29 @@ contract MarketPlace {
     struct oneOrder {// планируется для отслеживания подтверждения, что все получили чего хотели.
         //uint OrderID;
         uint FileID;
-        uint SellerID;
-        uint BayerID;
+        address BayerID;
         bool OwnerProof; // согласие завершение сделки со стороны владельца ресурса
         bool BayerProof; // согласие завершение сделки со стороны покупателя
-        uint Amount; // сумма для перевода
+
+
+        // берем из dbFiles[oneOrder.FileID]
+        //        string Name;
+        //        bytes32 Hash;
+        //        bytes32 SwarmHash;
+        //        uint Price;
+        //        string Description;
+        //
     }
 
 
-   //  mapping(address => sFile[]) dbFile;
+    //  mapping(address => sFile[]) dbFile;
     sFile[] dbFiles;
     mapping(address => uint[]) sellerFileIDs;
     mapping(address => uint) deposit;
-   //  mapping(uint => oneOrder[]) ordersDb; // гон я не смогу использовать так как не смогу получать длнну мапинга.
 
     oneOrder[] oneOrders;
-    mapping(address => uint) ownerOrdersID;
-    mapping(address => uint) bayersOrdersID;
-
+    mapping(uint => address) ownerOrdersID; //fixme записть заказов хромает надо сделать приятней, и ниже тоже
+    mapping(uint => address) bayersOrdersID; //fixme да и тут
 
     address[] allVendorsAtTheCurrentMoment; //todo
 
@@ -45,38 +50,54 @@ contract MarketPlace {
         if (_fileCount == 0) {
             _SellerID = allVendorsAtTheCurrentMoment.push(msg.sender);
         } else {
-            sFile[] memory sellerFilesIDs = sellerFileIDs[msg.sender];
-            sFile sellerFirstFileID = sellerFilesIDs[0];
+            uint[] memory sellerFilesIDs = sellerFileIDs[msg.sender];
+            uint sellerFirstFileID = sellerFilesIDs[0];
             _SellerID = dbFiles[sellerFirstFileID].SellerID;
-        }
+        } //fixme
 
         uint _FileID = dbFiles.length;
         dbFiles.push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID));
+        sellerFileIDs.push(_FileID);
         //todo log file added event
     }
 
-
     function list() public view returns (sFile[]) {
         sFile[] memory _allfiles;
-
-        for (uint i = 0; i < allVendorsAtTheCurrentMoment.length; i++) {
-            address _ownerAddress = allVendorsAtTheCurrentMoment[i];
-            sFile[] memory _ownerFiles = dbFile[_ownerAddress]; //todo dbfile по адресу владельца ничего не выдает надо читать даные с
-
-            for (uint j = 0; j < _ownerFiles.length; j++) {
-                _allfiles.push(_ownerFiles[j]);
-            }
+        for (uint i = 0; i < dbFiles.length; i++) {
+            _allfiles.push(dbFiles[i]);
         }
-
         return _allfiles;
 
     }
 
-    function createOrder(address _addressSeller, uint _FileID ) payable {
+    mapping(address => uint) deposits;
+
+    function createOrder(uint _FileID) payable {
         // todo проверка ссуммы стоимости модели
-        oneOrders.push()
+        sFile BayFile = dbFiles[_FileID];
+        require(BayFile.Price == msg.value);
+        deposits[msg.sender] += msg.value;
+        uint _orderID = oneOrders.push(oneOrder(_FileID, msg.sender, false, false));
+        ownerOrdersID[_orderID]; // fixme исправить !!!!
+        bayersOrdersID[_orderID];// fixme исправить !!!!
 
     }
 
+    function approveOrder (uint _orderID, bool _approve){
+        oneOrder _order = oneOrders[_orderID];
+        sFile _fileInfo = dbFiles(_order.FileID);
+        _fileInfo.SellerID;
+
+        // fixme надо настроить мапы "ownerOrdersID" "bayersOrdersID" или еще как-то получить адрес владельца!!!!!!!
+
+        if (msg.sender == _order.BayerID){
+            oneOrders[_orderID]
+
+        }else { (msg.sender == _)
+
+        }
+
+
+    }
 
 }
