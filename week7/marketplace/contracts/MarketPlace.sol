@@ -2,7 +2,7 @@ pragma solidity ^0.4.0;
 //pragma experimental ABIEncoderV2;
 
 contract MarketPlace {
-    constructor() {}
+    constructor() public {}
 
     struct sFile {
         string Name;
@@ -16,10 +16,10 @@ contract MarketPlace {
         //todo категории
     }
 
-    struct oneOrder {// планируется для отслеживания подтверждения, что все получили чего хотели.
+    struct oneOrder { // планируется для отслеживания подтверждения, что все получили чего хотели.
         //uint OrderID;
         uint FileID;
-        address BayerID;
+        address BayerAddress;
         bool OwnerApprove; // согласие завершение сделки со стороны владельца ресурса
         bool BayerApprove; // согласие завершение сделки со стороны покупателя
         uint FixPrise; // стоимость для фиксирования цены
@@ -47,7 +47,7 @@ contract MarketPlace {
 
     address[] allVendorsAtTheCurrentMoment; // для проверки: есть ли такой продавец
 
-    function addFile(string _name, bytes32 _Hash, bytes32 _SwarmHash, uint _Price, string _Description) {
+    function addFile(string _name, bytes32 _Hash, bytes32 _SwarmHash, uint _Price, string _Description) public {
         uint _fileCount = sellerFileIDs[msg.sender].length;
         uint _SellerID;
         if (_fileCount == 0) {
@@ -60,22 +60,22 @@ contract MarketPlace {
 
         uint _FileID = dbFiles.length;
         dbFiles.push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID, msg.sender));
-        sellerFileIDs(msg.sender) = _FileID;
+        sellerFileIDs[msg.sender].push(_FileID);
         //todo log file added event
     }
 
-    function list() public view returns(sFile[]) {
-        sFile[] memory _allfiles;
-        for (uint i = 0; i < dbFiles.length; i++) {
-            _allfiles.push(dbFiles[i]);
-        }
-        return _allfiles;
-
-    }
+//    function list() public view returns(sFile[]) {
+//        sFile[] memory _allfiles;
+//        for (uint i = 0; i < dbFiles.length; i++) {
+//            _allfiles.push(dbFiles[i]);
+//        }
+//        return _allfiles;
+//
+//    }
 
     mapping(address => uint) deposits;
 
-    function createOrder(uint _FileID) payable {
+    function createOrder(uint _FileID) public payable {
         // todo проверка ссуммы стоимости модели
         sFile memory BayFile = dbFiles[_FileID];
         require(BayFile.Price == msg.value);
@@ -89,16 +89,16 @@ contract MarketPlace {
     }
 
 
-    function approveOrder(uint _orderID, bool _approve){
+    function approveOrder(uint _orderID, bool _approve) public {
         oneOrder storage _order = allOrders[_orderID];
-        sFile memory _fileInfo = dbFiles(_order.FileID);
+        sFile memory _fileInfo = dbFiles[_order.FileID];
         address _owner = _fileInfo.Owner;
 
-        if (msg.sender == _order.BayerID) {
-            _order.BayerProof = _approve;
+        if (msg.sender == _order.BayerAddress) {
+            _order.BayerApprove = _approve;
         }
         if (msg.sender == _owner) {
-            _order.Owner = _approve; //todo не передумывать ????
+            _order.OwnerApprove = _approve; //todo не передумывать ????
         }
         //todo если она true вызвать closeOrder
          closeOrder(_orderID);
@@ -117,12 +117,17 @@ contract MarketPlace {
         _owner.transfer(amount);
     }
 
-    function searchOrder(address _lookingFor, uint _fileID) view returns(uint) {
+    function searchOrder(uint _fileID) view public returns(uint) {
         oneOrder memory _order;
         for (uint i=0; i < allOrders.length; i++) {
             _order = allOrders[i];
-            if(_order.FileID == _fileID){
-                return _order.BayerID;
+
+            if (msg.sender != _order.BayerAddress) {
+                continue;
+            }
+
+            if (_order.FileID == _fileID) {
+                return i;
             }
             // кажись так цикл не остановить ((
         }

@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d3ed069-6f49-4a69-adbb-d7acccecb610" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../week7/marketplace/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/contracts/MarketPlace.sol" afterDir="false" />
     </list>
@@ -32,7 +29,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/Ticket.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
+            <state relative-caret-position="561">
               <caret line="33" column="39" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="39" />
             </state>
           </provider>
@@ -309,7 +306,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Ticket.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
+        <state relative-caret-position="561">
           <caret line="33" column="39" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="39" />
         </state>
       </provider>
