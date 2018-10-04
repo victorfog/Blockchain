@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d3ed069-6f49-4a69-adbb-d7acccecb610" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../week7/marketplace/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/contracts/MarketPlace.sol" afterDir="false" />
@@ -214,7 +216,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49833888" visible="true" weight="0.2741148" />
       <window_info id="Structure" order="1" sideWeight="0.5007728" side_tool="true" weight="0.25885227" />
