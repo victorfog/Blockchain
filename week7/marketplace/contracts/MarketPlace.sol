@@ -25,7 +25,6 @@ contract MarketPlace {
         uint FixPrise; // стоимость для фиксирования цены
         bool isPayed;
 
-
         // берем из dbFiles[oneOrder.FileID]
         //        string Name;
         //        bytes32 Hash;
@@ -35,6 +34,8 @@ contract MarketPlace {
         //
     }
 
+    event NewFile(string _name, bytes32 _Hash, bytes32 _SwarmHash, uint _Price,
+            string _Description, uint _FileID, uint _SellerID, address _owner);
 
     //  mapping(address => sFile[]) dbFile;
     sFile[] dbFiles;
@@ -61,7 +62,8 @@ contract MarketPlace {
         uint _FileID = dbFiles.length;
         dbFiles.push(sFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID, msg.sender));
         sellerFileIDs[msg.sender].push(_FileID);
-        //todo log file added event
+
+        emit NewFile(_name, _Hash, _SwarmHash, _Price, _Description, _FileID, _SellerID, msg.sender);
     }
 
 //    function list() public view returns(sFile[]) {
@@ -75,24 +77,30 @@ contract MarketPlace {
 
     mapping(address => uint) deposits;
 
-    function createOrder(uint _FileID) public payable {
-        // todo проверка ссуммы стоимости модели
-        sFile memory BayFile = dbFiles[_FileID];
-        require(BayFile.Price == msg.value);
-//        deposits[msg.sender] += msg.value;
-        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false));
-        ownerOrdersID[_orderID];
-        // fixme исправить !!!!
-        bayersOrdersID[_orderID];
-        // fixme исправить !!!!
+    event EventCreateOrder(uint _FileID, uint _orderID, uint _price);
 
+    function createOrder(uint _FileID) public payable {
+        // todo проверка суммы стоимости модели
+        sFile memory BayFile = dbFiles[_FileID];
+        require(dbFiles.length >= _FileID, "Файл с указанным ID не существует");
+        require(BayFile.Price <= msg.value, "given money should be greater than the price");
+//      deposits[msg.sender] += msg.value;
+        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false))-1;
+        ownerOrdersID[_orderID];
+        // fixme исправить !!!!!
+        bayersOrdersID[_orderID];
+        // fixme исправить !!!!!
+        emit EventCreateOrder(_FileID, _orderID, BayFile.Price);
     }
 
 
     function approveOrder(uint _orderID, bool _approve) public {
+        require(allOrders.length >= _orderID, "given unexisted orderID");
+
         oneOrder storage _order = allOrders[_orderID];
         sFile memory _fileInfo = dbFiles[_order.FileID];
         address _owner = _fileInfo.Owner;
+        require(msg.sender == _order.BayerAddress || msg.sender == _fileInfo.Owner, "wrong buyer or seller address");
 
         if (msg.sender == _order.BayerAddress) {
             _order.BayerApprove = _approve;
@@ -110,11 +118,11 @@ contract MarketPlace {
 
         uint amount = _order.FixPrise;
         address _owner = dbFiles[_order.FileID].Owner;
-        require(_order.OwnerApprove == true);
-        require(_order.BayerApprove == true);
 
-        _order.isPayed = true;
-        _owner.transfer(amount);
+        if (_order.OwnerApprove == true && _order.BayerApprove == true) {
+            _order.isPayed = true;
+            _owner.transfer(amount);
+        }
     }
 
     function searchOrder(uint _fileID) view public returns(uint) {
