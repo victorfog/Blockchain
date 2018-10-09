@@ -114,7 +114,7 @@ contract MarketPlace {
         //todo если она true вызвать closeOrder
         if(_order.OwnerApprove == true && _order.BayerApprove == true){
             closeOrder(_orderID);
-            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "transaction");
+            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "Transaction");
         }
 
     }
