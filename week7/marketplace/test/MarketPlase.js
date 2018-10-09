@@ -104,14 +104,31 @@ contract('MarketPlace', function(accounts) {
                 _OrderID = result.args._orderID.toNumber();
             } else {
                 console.log("PANIC!!!!", error);
+
             }
         });
         await sleep(100);
-
         await MarketContract.createOrder(3, {from: accounts[5], value: 104});
         await sleep(500);
+        eventContractHendler.stopWatching();
+
+        let _eventApproveOrder = MarketContract.eventApproveOrder();
+        _eventApproveOrder.watch(function(error, result) {
+            if (!error){
+                console.log(result.args);
+            } else {
+                console.log("Panic!!!! approve", error);
+            }
+
+        });
+        await sleep(100);
         await MarketContract.approveOrder(_OrderID, true, {from: accounts[5]});
+        await expectError( MarketContract.approveOrder(_OrderID, true, {from: accounts[4]}));
+        await MarketContract.approveOrder(_OrderID, true, {from: accounts[2]});
+        await sleep(500);
+
     });
+
 
 });
 

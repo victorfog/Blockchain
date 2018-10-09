@@ -93,6 +93,7 @@ contract MarketPlace {
         emit EventCreateOrder(_FileID, _orderID, BayFile.Price);
     }
 
+    event eventApproveOrder(bool _owner, bool bayer, string statusTransaktion);
 
     function approveOrder(uint _orderID, bool _approve) public {
         require(allOrders.length >= _orderID, "given unexisted orderID");
@@ -104,12 +105,18 @@ contract MarketPlace {
 
         if (msg.sender == _order.BayerAddress) {
             _order.BayerApprove = _approve;
+            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "no transaction"); //todo Ты вчера остановился на написании события для проверки статуса транзакции
         }
         if (msg.sender == _owner) {
             _order.OwnerApprove = _approve; //todo не передумывать ????
+            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "no transaction");
         }
         //todo если она true вызвать closeOrder
-         closeOrder(_orderID);
+        if(_order.OwnerApprove == true && _order.BayerApprove == true){
+            closeOrder(_orderID);
+            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "transaction");
+        }
+
     }
 
     function closeOrder(uint _orderID) private {
