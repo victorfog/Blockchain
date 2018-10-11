@@ -13,7 +13,7 @@ contract MarketPlace {
         uint FileID;
         uint SellerID;
         address Owner;
-        //todo категории
+
     }
 
     struct oneOrder { // планируется для отслеживания подтверждения, что все получили чего хотели.
@@ -23,7 +23,9 @@ contract MarketPlace {
         bool OwnerApprove; // согласие завершение сделки со стороны владельца ресурса
         bool BayerApprove; // согласие завершение сделки со стороны покупателя
         uint FixPrise; // стоимость для фиксирования цены
-        bool isPayed;
+        bool IsPayed;
+        uint ExistDisput; //todo добавить поле открытого спора
+
 
         // берем из dbFiles[oneOrder.FileID]
         //        string Name;
@@ -43,8 +45,15 @@ contract MarketPlace {
    // mapping(address => uint) deposit;
 
     oneOrder[] allOrders;
-    mapping(uint => address) ownerOrdersID; //fixme записть заказов хромает надо сделать приятней, и ниже тоже
-    mapping(uint => address) bayersOrdersID; //fixme да и тут
+    mapping(uint => address) ownerOrdersID;
+    mapping(uint => address) bayersOrdersID;
+
+    //todo структура споров в массиве и id спора записывать продавцу
+    //массив для споров
+
+
+    //todo (возможно создать структуру покупателя с занесением информации о спорах)
+
 
     address[] allVendorsAtTheCurrentMoment; // для проверки: есть ли такой продавец
 
@@ -80,16 +89,13 @@ contract MarketPlace {
     event EventCreateOrder(uint _FileID, uint _orderID, uint _price);
 
     function createOrder(uint _FileID) public payable {
-        // todo проверка суммы стоимости модели
         sFile memory BayFile = dbFiles[_FileID];
         require(dbFiles.length >= _FileID, "Файл с указанным ID не существует");
         require(BayFile.Price <= msg.value, "given money should be greater than the price");
 //      deposits[msg.sender] += msg.value;
-        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false))-1;
+        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false, 0))-1;
         ownerOrdersID[_orderID];
-        // fixme исправить !!!!!
         bayersOrdersID[_orderID];
-        // fixme исправить !!!!!
         emit EventCreateOrder(_FileID, _orderID, BayFile.Price);
     }
 
@@ -97,6 +103,7 @@ contract MarketPlace {
 
     function approveOrder(uint _orderID, bool _approve) public {
         require(allOrders.length >= _orderID, "given unexisted orderID");
+        //todo проверка открытого спора
 
         oneOrder storage _order = allOrders[_orderID];
         sFile memory _fileInfo = dbFiles[_order.FileID];
@@ -105,13 +112,13 @@ contract MarketPlace {
 
         if (msg.sender == _order.BayerAddress) {
             _order.BayerApprove = _approve;
-            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "no transaction"); //todo Ты вчера остановился на написании события для проверки статуса транзакции
-        }
-        if (msg.sender == _owner) {
-            _order.OwnerApprove = _approve; //todo не передумывать ????
             emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "no transaction");
         }
-        //todo если она true вызвать closeOrder
+        if (msg.sender == _owner) {
+            _order.OwnerApprove = _approve;
+            emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "no transaction");
+        }
+        // если она true вызвать closeOrder
         if(_order.OwnerApprove == true && _order.BayerApprove == true){
             closeOrder(_orderID);
             emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "Transaction");
@@ -121,13 +128,13 @@ contract MarketPlace {
 
     function closeOrder(uint _orderID) private {
         oneOrder storage _order = allOrders[_orderID];
-        require(_order.isPayed == false, "the order has been already payed");
+        require(_order.IsPayed == false, "the order has been already payed");
 
         uint amount = _order.FixPrise;
         address _owner = dbFiles[_order.FileID].Owner;
 
         if (_order.OwnerApprove == true && _order.BayerApprove == true) {
-            _order.isPayed = true;
+            _order.IsPayed = true;
             _owner.transfer(amount);
         }
     }
@@ -147,4 +154,20 @@ contract MarketPlace {
             // кажись так цикл не остановить ((
         }
     }
+
+    function canselOrder(uint _orderID) public { //todo создать функцию отмена заказа
+        oneOrder storage _order =  allOrders[_orderID];
+        require(_order.OwnerApprove != true && _order.BayerApprove != true);
+        require(_order.IsPayed == false, "the order has been already payed");
+        address _bayerAddress = _order.BayerAddress;
+        uint amount = _order.FixPrise;
+        _order.IsPayed = true;
+        _bayerAddress.transfer(amount);
+    }
+
+//    function disput(uint _orderID, string _complaint) public {
+//        oneOrder storage _order = allOrders[_orderID];
+//        sFile storage _fileInfo = dbFiles[_order.FileID];
+//    }
+
 }
