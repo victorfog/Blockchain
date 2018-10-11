@@ -160,9 +160,12 @@ contract MarketPlace {
         require(_order.OwnerApprove != true && _order.BayerApprove != true);
         require(_order.IsPayed == false, "the order has been already payed");
         address _bayerAddress = _order.BayerAddress;
+        require(_bayerAddress == msg.sender);
         uint amount = _order.FixPrise;
         _order.IsPayed = true;
         _bayerAddress.transfer(amount);
+        emit eventApproveOrder(_order.OwnerApprove, _order.BayerApprove, "Transaction");
+
     }
 
 //    function disput(uint _orderID, string _complaint) public {
