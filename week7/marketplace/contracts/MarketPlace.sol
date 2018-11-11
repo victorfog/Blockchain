@@ -27,14 +27,6 @@ contract MarketPlace {
         uint FixPrise; // стоимость для фиксирования цены
         bool IsPayed;
         statusDisput ExistDisput;
-        uint DisputID;// id спора
-
-        // берем из dbFiles[oneOrder.FileID]
-        //        string Name;
-        //        bytes32 Hash;
-        //        bytes32 SwarmHash;
-        //        uint Price;
-        //        string Description;
 
     }
 
@@ -47,7 +39,16 @@ contract MarketPlace {
         bool Exist;
         //
     }
-
+    struct voiting {
+        address arbitr1;
+        bytes32 arbitr1voteHash; // кто из арбитров 1 2 3
+        address arbitr2;
+        bytes32 arbitr2voteHash;
+        address arbitr3;
+        bytes32 arbitr3voteHash;
+        uint toOwner;
+        uint toBayer;
+    }
 
     struct disput {//todo: структура споров в массиве и id спора записывать продавцу
         uint DateCreateDisput;
@@ -58,12 +59,9 @@ contract MarketPlace {
         bool ConsentBayer;
         bool CallArbitr;
         string arbirtatorComment;
-        uint arbitr1;
-        bytes32 arbitr1vote; // кто из арбитров 1 2 3
-        uint arbitr2;
-        bytes32 arbitr2vote;
-        uint arbirt3;
-        bytes32 arbitr3vote;
+        voiting DisputVoiting;
+        address closedDispute_in_Favor;
+
     }
     // fixme насморк замучил немогу, только и бегаю до ванны и обратно 5 утра поеду в аптеку ((((
     //mapping(address=>uint[]) arbitrationDisputs; // не уверен что эир мне надо
@@ -128,7 +126,7 @@ contract MarketPlace {
         sFile memory BayFile = dbFiles[_FileID];
         require(dbFiles.length >= _FileID, "Файл с указанным ID не существует");
         require(BayFile.Price <= msg.value, "given money should be greater than the price");
-        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false, statusDisput.empty , 0)) - 1;
+        uint _orderID = allOrders.push(oneOrder(_FileID, msg.sender, false, false, BayFile.Price, false, statusDisput.empty)) - 1;
         //0- статус спора; 0-ID спора
         ownerOrdersID[_orderID];
         bayersOrdersID[_orderID];
@@ -165,7 +163,7 @@ contract MarketPlace {
     function closeOrder(uint _orderID) private {
         oneOrder storage _order = allOrders[_orderID];
         require(_order.IsPayed == false, "the order has been already payed");
-
+// кучу проверок по открытию диспута
         uint amount = _order.FixPrise;
         address _owner = dbFiles[_order.FileID].Owner;
 
@@ -236,22 +234,31 @@ contract MarketPlace {
         require(_order.BayerAddress == msg.sender || _fileInfo.Owner == msg.sender);
         require(_order.ExistDisput == statusDisput.empty);
         _order.ExistDisput = statusDisput.exist;
+        address _arbitrAddress;
+        string memory _emptiString;
+        voiting memory empryVoiting;
+      //  bytes32 _emptyHash;
         allDisput[_orderID] = disput({
             DateCreateDisput: now,
             WhoCreateDisput: msg.sender,
             Complaint: _complaint,
-            AnswerComplaint: "",
+            AnswerComplaint: _emptiString,
             ConsentOwner: false,
             ConsentBayer: false,
             CallArbitr: false,
-            arbirtatorComment:"",
-            arbitr1: 0 //fixme: надо настроить на пустой параметр или адрес контракта или владельца ресурса.
-            arbitr1vote: empty,
-            arbitr2: 0,
-            arbitr2vote: empty,
-            arbirt3: 0,
-            arbitr3vote: empty
+            arbirtatorComment: _emptiString,
+            DisputVoiting: empryVoiting,
+            closedDispute_in_Favor: _arbitrAddress
+//            arbitr1:  _arbitrAddress,//fixme: надо настроить на пустой параметр или адрес контракта или владельца ресурса.
+//            arbitr1vote: _emptyHash,
+//            arbitr2: _arbitrAddress,
+//            arbitr2vote: _emptyHash,
+//            arbirt3: _arbitrAddress,
+//            arbitr3vote: _emptyHash
             });
+
+
+
 
         //todo обращаемся к базе арбитров и назначаем 3х красавцев
     }
@@ -260,66 +267,23 @@ contract MarketPlace {
         disput storage _disput = allDisput[_orderID];
         require(_disput.CallArbitr == false);
         require(_disput.DateCreateDisput + 10 days < now);
-        _disput.arbitr1 = 0;
+        setArbitr(_orderID);
         _disput.arbirtatorComment = _comments;
         _disput.CallArbitr = true;
 
     }
 
     function setArbitr (uint _orderID) public returns(uint){ ///Нужен выбор арбитров
-        uint _who; //fixme переделать на вызов функции рандомного выбора арбитров
+        address _who; //fixme переделать на вызов функции рандомного выбора арбитров
         disput storage _disput = allDisput[_orderID];
-        _disput.arbitr1 = _who; //какой-то бред нуден или номер арбитра из массива или его адрес и мап с индексами
-        _disput.arbitr2 = _who;
-        _disput.arbitr3 = _who;
+        _disput.DisputVoiting.arbitr1 = _who; //какой-то бред нуден или номер арбитра из массива или его адрес и мап с индексами
+        _disput.DisputVoiting.arbitr2 = _who;
+        _disput.DisputVoiting.arbitr3 = _who;
 
     }
-
-
 
 
 
 // fixme голосование ____ отметка все что ниже надо редактировать
 // fixme
-
-   // structVoting voting; // не нужна вместо нее все в disput
-//    mapping(bool => address[]) votes;// старая проверка на произведено голосование или нет //fixme на
-//    mapping(address => bool) usersDb;// todo: в мапинге надо хранить хеш голосов
-//    mapping(bytes32 => address) hashBd;
-//
-//    event XXX(uint256);
-//    event voteX(bool _vote, bytes32 _word);
-
-
-    function vote(bytes32 _voteHash) public {
-        require(voting.startDate <= now);
-        require(voting.endDate >= now);
-        require(usersDb[msg.sender] != true);
-
-        usersDb[msg.sender] = true; // помечаем кто проголосовал
-        hashBd[_voteHash] = msg.sender;
-    }
-
-    function hashVote(bool _vote, bytes32 _word) public pure returns (bytes32) {
-        return keccak256(abi.encodePacked(_vote, _word));
-    }
-
-    function openvote(bool _vote, bytes32 _word) public {
-        require(voting.endDate <= now);
-        require(usersDb[msg.sender]);
-
-        if (hashBd[hashVote(_vote, _word)] == msg.sender){
-            votes[_vote].push(msg.sender);
-        }
-    }
-
-    function stats() public view returns (uint, uint) {
-        address[] memory _arrayVotesNo = votes[false];
-        address[] memory _arrayVotesYes = votes[true];
-        uint no = _arrayVotesNo.length;
-        uint yes = _arrayVotesYes.length;
-
-        return (no, yes);
-
-    }
 }

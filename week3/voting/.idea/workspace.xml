@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b0c8f41-d0e4-4787-ae5b-674b38963709" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../week7/marketplace/.idea/dictionaries/victor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/.idea/dictionaries/victor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/build/contracts/MarketPlace.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/build/contracts/MarketPlace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../week7/marketplace/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../../week7/marketplace/contracts/MarketPlace.sol" afterDir="false" />
@@ -252,7 +250,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0976801" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
