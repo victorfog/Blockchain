@@ -39,7 +39,7 @@ contract MarketPlace {
         bool Exist;
         //
     }
-    struct voiting {
+    struct voting {
         address arbitr1;
         bytes32 arbitr1voteHash; // кто из арбитров 1 2 3
         address arbitr2;
@@ -59,7 +59,7 @@ contract MarketPlace {
         bool ConsentBayer;
         bool CallArbitr;
         string arbirtatorComment;
-        voiting DisputVoiting;
+        voting DisputVoting;
         address closedDispute_in_Favor;
 
     }
@@ -236,7 +236,7 @@ contract MarketPlace {
         _order.ExistDisput = statusDisput.exist;
         address _arbitrAddress;
         string memory _emptiString;
-        voiting memory empryVoiting;
+        voting memory empryVoting;
       //  bytes32 _emptyHash;
         allDisput[_orderID] = disput({
             DateCreateDisput: now,
@@ -247,7 +247,7 @@ contract MarketPlace {
             ConsentBayer: false,
             CallArbitr: false,
             arbirtatorComment: _emptiString,
-            DisputVoiting: empryVoiting,
+            DisputVoting: empryVoting,
             closedDispute_in_Favor: _arbitrAddress
             });
 
@@ -270,9 +270,9 @@ contract MarketPlace {
     function setArbitr (uint _orderID) public returns(uint){ ///Нужен выбор арбитров
         address _who; //fixme переделать на вызов функции рандомного выбора арбитров
         disput storage _disput = allDisput[_orderID];
-        _disput.DisputVoiting.arbitr1 = _who; //какой-то бред нуден или номер арбитра из массива или его адрес и мап с индексами
-        _disput.DisputVoiting.arbitr2 = _who;
-        _disput.DisputVoiting.arbitr3 = _who;
+        _disput.DisputVoting.arbitr1 = _who; //какой-то бред нуден или номер арбитра из массива или его адрес и мап с индексами
+        _disput.DisputVoting.arbitr2 = _who;
+        _disput.DisputVoting.arbitr3 = _who;
 
     }
 
@@ -280,4 +280,6 @@ contract MarketPlace {
 
 // fixme голосование ____ отметка все что ниже надо редактировать
 // fixme
+
+
 }

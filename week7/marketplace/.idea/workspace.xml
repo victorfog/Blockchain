@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba4c6ddc-6c03-4af6-835a-93691162d310" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../../week3/voting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week3/voting/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/contracts/MarketPlace.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/MarketPlace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/MarketPlace.sol" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,13 +39,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="3008" />
-          <entry key="sol" value="9055" />
+          <entry key="sol" value="9057" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="3008" />
-          <entry key="Solidity file" value="9055" />
+          <entry key="Solidity file" value="9057" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -74,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3914">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="591">
+              <caret line="283" column="4" selection-start-line="283" selection-start-column="4" selection-end-line="283" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -367,8 +364,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3914">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="591">
+          <caret line="283" column="4" selection-start-line="283" selection-start-column="4" selection-end-line="283" selection-end-column="4" />
         </state>
       </provider>
     </entry>
