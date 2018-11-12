@@ -249,12 +249,6 @@ contract MarketPlace {
             arbirtatorComment: _emptiString,
             DisputVoiting: empryVoiting,
             closedDispute_in_Favor: _arbitrAddress
-//            arbitr1:  _arbitrAddress,//fixme: надо настроить на пустой параметр или адрес контракта или владельца ресурса.
-//            arbitr1vote: _emptyHash,
-//            arbitr2: _arbitrAddress,
-//            arbitr2vote: _emptyHash,
-//            arbirt3: _arbitrAddress,
-//            arbitr3vote: _emptyHash
             });
 
 

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ba4c6ddc-6c03-4af6-835a-93691162d310" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../../week3/voting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week3/voting/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/MarketPlace.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/MarketPlace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/MarketPlace.sol" afterDir="false" />
     </list>
@@ -41,13 +42,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="3008" />
-          <entry key="sol" value="9025" />
+          <entry key="sol" value="9055" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="3008" />
-          <entry key="Solidity file" value="9025" />
+          <entry key="Solidity file" value="9055" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -73,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3569">
-              <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+            <state relative-caret-position="-3914">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -301,9 +302,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4841772" visible="true" weight="0.2796093" />
-      <window_info id="Structure" order="1" sideWeight="0.51582277" side_tool="true" visible="true" weight="0.2796093" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48492792" visible="true" weight="0.2796093" />
+      <window_info id="Structure" order="1" sideWeight="0.5150721" side_tool="true" visible="true" weight="0.2796093" />
       <window_info id="Favorites" order="2" sideWeight="0.51141554" side_tool="true" weight="0.3809524" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -313,7 +315,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31347963" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.33960292" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.20271683" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50061053" side_tool="true" weight="0.43782654" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -365,8 +367,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3569">
-          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+        <state relative-caret-position="-3914">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
         </state>
       </provider>
     </entry>
