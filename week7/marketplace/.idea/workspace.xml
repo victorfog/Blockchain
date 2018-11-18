@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba4c6ddc-6c03-4af6-835a-93691162d310" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../../week3/voting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../week3/voting/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/MarketPlace.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/MarketPlace.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contracts/MarketPlace.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/MarketPlace.sol" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,24 +31,25 @@
     <session id="-1758446801">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="3008" />
-          <entry key="sol" value="9057" />
+          <entry key="sol" value="10458" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="3008" />
-          <entry key="Solidity file" value="9057" />
+          <entry key="Solidity file" value="10458" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -71,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="283" column="4" selection-start-line="283" selection-start-column="4" selection-end-line="283" selection-end-column="4" />
+            <state relative-caret-position="4061">
+              <caret line="280" column="16" selection-start-line="280" selection-start-column="16" selection-end-line="280" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -160,8 +164,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Sworm</find>
-      <find>_SellerID</find>
       <find>await MarketContract.addFile(</find>
       <find>addFileCallback</find>
       <find>FileID</find>
@@ -176,17 +178,22 @@
       <find>push</find>
       <find>storage</find>
       <find>bayersOrdersID</find>
-      <find>sellerFileIDs</find>
       <find>:</find>
       <find>arbitrator</find>
       <find>arbitratorDB</find>
       <find>allOrders</find>
-      <find>ownerOrdersID</find>
       <find>disput</find>
       <find>arbitratorID</find>
       <find>deposit</find>
       <find>becomeANarbitrator</find>
       <find>DisputID</find>
+      <find>arbitr1</find>
+      <find>ownerOrdersID</find>
+      <find>sellerFileIDs</find>
+      <find>allArbitrator</find>
+      <find>who_arbitr</find>
+      <find>DisputVoting</find>
+      <find>arbitrBrahlo</find>
     </findStrings>
     <replaceStrings>
       <replace>{</replace>
@@ -230,6 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,7 +263,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,10 +306,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48492792" visible="true" weight="0.2796093" />
-      <window_info id="Structure" order="1" sideWeight="0.5150721" side_tool="true" visible="true" weight="0.2796093" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48244274" visible="true" weight="0.2826618" />
+      <window_info id="Structure" order="1" sideWeight="0.51755726" side_tool="true" visible="true" weight="0.2826618" />
       <window_info id="Favorites" order="2" sideWeight="0.51141554" side_tool="true" weight="0.3809524" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -312,7 +318,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31347963" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.20271683" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.3155695" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50061053" side_tool="true" weight="0.43782654" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -364,8 +370,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="283" column="4" selection-start-line="283" selection-start-column="4" selection-end-line="283" selection-end-column="4" />
+        <state relative-caret-position="4061">
+          <caret line="280" column="16" selection-start-line="280" selection-start-column="16" selection-end-line="280" selection-end-column="16" />
         </state>
       </provider>
     </entry>

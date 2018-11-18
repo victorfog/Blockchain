@@ -39,31 +39,34 @@ contract MarketPlace {
         bool Exist;
         //
     }
+
+    //enum statusArbitr {set,};
+    struct arbitrVote {
+        bytes32 hash;
+        string codeWord;
+
+    }
     struct voting {
-        address arbitr1;
-        bytes32 arbitr1voteHash; // кто из арбитров 1 2 3
-        address arbitr2;
-        bytes32 arbitr2voteHash;
-        address arbitr3;
-        bytes32 arbitr3voteHash;
+        mapping(address => arbitrVote) votes; //fixme если убрать!!!!!!!!!!!!!!
+        uint endVoting;
         uint toOwner;
         uint toBayer;
     }
 
     struct disput {//todo: структура споров в массиве и id спора записывать продавцу
-        uint DateCreateDisput;
-        address WhoCreateDisput;
+        uint DateCreate;
+        address WhoCreate;
         string Complaint; //суть притензии
         string AnswerComplaint; // ответочка
         bool ConsentOwner;
         bool ConsentBayer;
         bool CallArbitr;
         string arbirtatorComment;
-        voting DisputVoting;
+        voting Voting;
         address closedDispute_in_Favor;
+//        uint digitArbitr;
 
     }
-    // fixme насморк замучил немогу, только и бегаю до ванны и обратно 5 утра поеду в аптеку ((((
     //mapping(address=>uint[]) arbitrationDisputs; // не уверен что эир мне надо
 
     event NewFile(string _name, bytes32 _Hash, bytes32 _SwarmHash, uint _Price,
@@ -77,11 +80,15 @@ contract MarketPlace {
     // mapping(address => uint) deposit;
 
     oneOrder[] allOrders;
-    arbitrator[] allArbitrator; //арбитры
+    arbitrator[] allArbitrator; //арбитры оставить в массиве !! на это есть основани например если !!! вдруг захочеш по ним пройтись циклом или кто другой
+                                //не трогать длинный камент )) далой длинну строки доса 80 символов не придел ))
+    mapping(address => uint) arbitr_to_id; //чисто для записи id апбитров
+
     mapping(uint => address) ownerOrdersID;
     mapping(uint => address) bayersOrdersID;
     mapping(address => uint) arbitratorID;
     mapping(uint => disput) allDisput;
+
 
 
     //disput[] allDisput; //сюда будем заносить споры fixme: переделать на mapping uint - > disput ( где uint orderID )
@@ -217,13 +224,15 @@ contract MarketPlace {
     }
 
     function newArbitrator(address arbitr, uint _deposit) private returns (uint) { //тужен тест
-        return allArbitrator.push(arbitrator({
+            uint _id = allArbitrator.push(arbitrator({
             arbitratorAddress : arbitr,
             Deposit : _deposit,
             DisputCount : 0,
             Rating : 0,
             Exist : true
             })) - 1;
+            arbitr_to_id[msg.sender] = _id;
+            return (_id);
     }
 
     event createDisputEvent(uint _orderID, string _complaint, address _owner, address _bayer); //нужен тест
@@ -236,31 +245,27 @@ contract MarketPlace {
         _order.ExistDisput = statusDisput.exist;
         address _arbitrAddress;
         string memory _emptiString;
-        voting memory empryVoting;
+        voting memory emptyVoting;
       //  bytes32 _emptyHash;
         allDisput[_orderID] = disput({
-            DateCreateDisput: now,
-            WhoCreateDisput: msg.sender,
+            DateCreate: now,
+            WhoCreate: msg.sender,
             Complaint: _complaint,
             AnswerComplaint: _emptiString,
             ConsentOwner: false,
             ConsentBayer: false,
             CallArbitr: false,
             arbirtatorComment: _emptiString,
-            DisputVoting: empryVoting,
+            Voting: emptyVoting,
             closedDispute_in_Favor: _arbitrAddress
             });
-
-
-
-
         //todo обращаемся к базе арбитров и назначаем 3х красавцев
     }
 
     function callArbitrator (uint _orderID, string _comments) public { //нужен тест
         disput storage _disput = allDisput[_orderID];
         require(_disput.CallArbitr == false);
-        require(_disput.DateCreateDisput + 10 days < now);
+        require(_disput.DateCreate + 10 days < now);
         setArbitr(_orderID);
         _disput.arbirtatorComment = _comments;
         _disput.CallArbitr = true;
@@ -268,11 +273,12 @@ contract MarketPlace {
     }
 
     function setArbitr (uint _orderID) public returns(uint){ ///Нужен выбор арбитров
-        address _who; //fixme переделать на вызов функции рандомного выбора арбитров
+        // каким-то образом идет выбор арбитров возвращается целое число
+        uint _chose = 1; //todo: поменять на вызов рандомайзера
+        address _arbitr = allArbitrator[_chose].arbitratorAddress;
         disput storage _disput = allDisput[_orderID];
-        _disput.DisputVoting.arbitr1 = _who; //какой-то бред нуден или номер арбитра из массива или его адрес и мап с индексами
-        _disput.DisputVoting.arbitr2 = _who;
-        _disput.DisputVoting.arbitr3 = _who;
+        arbitrVote memory _arbitrVote;
+        _disput.Voting.votes[_arbitr] = _arbitrVote; //todo: в структцры voting надо бодавить что-то !!!!
 
     }
 
@@ -280,6 +286,16 @@ contract MarketPlace {
 
 // fixme голосование ____ отметка все что ниже надо редактировать
 // fixme
-
+//    function votingArbitr (uint _orderID, address _voteTo, bytes32 _codeWord) public  {
+//        disput storage _disput = allDisput[_orderID];
+//
+//        bytes32 _hash = hashVote(_voteTo, _codeWord);
+//        _orderID = 1;
+//
+//    }
+//
+//    function hashVote(address _vote, bytes32 _word) public returns (bytes32) {
+//        return keccak256(abi.encodePacked(_vote, _word));
+//    }
 
 }
