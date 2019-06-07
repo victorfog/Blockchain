@@ -24,18 +24,10 @@ contract('Ticket', function(accounts) {
         let ticketsPrice = await ticketContract.calculatePrice(ticketsNumber);
         await ticketContract.buy(accounts[1], ticketsNumber,
             {from: accounts[1], value: ticketsPrice});
-
-        ticketsNumber = 15;
+        ticketsNumber = 10;
         ticketsPrice = await ticketContract.calculatePrice(ticketsNumber);
         await ticketContract.buy(accounts[3], ticketsNumber,
             {from: accounts[3], value: ticketsPrice});
-
-        // ticketsNumber = -1;
-        // ticketsPrice = await ticketContract.calculatePrice(ticketsNumber);
-        // await (ticketContract.buy(accounts[2], ticketsNumber,
-        //     {from: accounts[2], value: ticketsPrice}));
-        // console.log(ticketsPrice);
-
     });
 
 
