@@ -43,7 +43,7 @@ contract MarketPlace {
     //enum statusArbitr {set,};
     struct arbitrVote {
         bytes32 hash;
-        string codeWord;
+        bytes32 codeWord;
 
     }
     struct voting {
@@ -64,7 +64,7 @@ contract MarketPlace {
         string arbirtatorComment;
         voting Voting;
         address closedDispute_in_Favor;
-//        uint digitArbitr;
+        uint arbitrVoteCount;
 
     }
     //mapping(address=>uint[]) arbitrationDisputs; // не уверен что эир мне надо
@@ -169,6 +169,7 @@ contract MarketPlace {
 
     function closeOrder(uint _orderID) private {
         oneOrder storage _order = allOrders[_orderID];
+        require(_order.ExistDisput == statusDisput.empty);
         require(_order.IsPayed == false, "the order has been already payed");
 // кучу проверок по открытию диспута
         uint amount = _order.FixPrise;
@@ -257,7 +258,8 @@ contract MarketPlace {
             CallArbitr: false,
             arbirtatorComment: _emptiString,
             Voting: emptyVoting,
-            closedDispute_in_Favor: _arbitrAddress
+            closedDispute_in_Favor: _arbitrAddress,
+            arbitrVoteCount: 0
             });
         //todo обращаемся к базе арбитров и назначаем 3х красавцев
     }
@@ -284,18 +286,69 @@ contract MarketPlace {
 
 
 
+    // a arbitr voting commit stage
 // fixme голосование ____ отметка все что ниже надо редактировать
 // fixme
-//    function votingArbitr (uint _orderID, address _voteTo, bytes32 _codeWord) public  {
-//        disput storage _disput = allDisput[_orderID];
-//
-//        bytes32 _hash = hashVote(_voteTo, _codeWord);
-//        _orderID = 1;
-//
-//    }
-//
-//    function hashVote(address _vote, bytes32 _word) public returns (bytes32) {
-//        return keccak256(abi.encodePacked(_vote, _word));
-//    }
+
+            event endCommit(uint _orderID, string _textClose);// заставить подписаться !!!!!!!!
+
+    function votingArbitr (uint _orderID, bytes32 _hash) public  {
+        require(_disput.arbitrVoteCount < 3);
+        disput storage _disput = allDisput[_orderID];
+        _disput.Voting.votes[msg.sender].hash = _hash;
+
+        if (_disput.arbitrVoteCount < 3) {
+            _disput.arbitrVoteCount++;
+        } else {
+            emit endCommit(_orderID, "All 3 arbitr vote");
+        }
+    }
+
+    function reveal(uint _orderID, address _voteTo, bytes32 _word) public {
+        disput storage _disput = allDisput[_orderID];
+        require(_disput.arbitrVoteCount == 3);
+        //arbitrVote memory _arbitrVote = _disput.Voting.votes[msg.sender];
+        address _bayer = allOrders[_orderID].BayerAddress;
+
+        oneOrder storage _order = allOrders[_orderID];
+        sFile memory _fileInfo = dbFiles[_order.FileID];
+        address _owner = _fileInfo.Owner;
+
+        bytes32 _firstHash = _disput.Voting.votes[msg.sender].hash;
+        bytes32 _secondHash = hashVote(_orderID, _voteTo, _word);
+
+        if (_firstHash != _secondHash){
+             return;
+        }
+
+        _disput.Voting.votes[msg.sender].codeWord = _word;
+
+        if(_bayer == _voteTo){
+            _disput.Voting.toBayer++;
+        }
+        if(_owner == _voteTo ){
+            _disput.Voting.toOwner++;
+        }
+
+        if(_disput.Voting.toBayer+_disput.Voting.toOwner == 3){
+            _order.ExistDisput = statusDisput.close;
+
+            closeOrderWithDisput(_orderID, _disput.Voting.toBayer>_disput.Voting.toOwner);
+        }
+
+    }
+
+    function closeOrderWithDisput(uint _orderID, bool _isBuyerWins){
+        oneOrder storage _order = allOrders[_orderID];
+        require(_order.ExistDisput == statusDisput.close);
+
+    }
+
+
+    function hashVote(uint _orderID, address _voteTo, bytes32 _word) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_orderID, _voteTo, _word));
+    }
+
+
 
 }

@@ -27,65 +27,38 @@
     <expand />
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1758446801">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="js" value="3008" />
-          <entry key="sol" value="10458" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="3008" />
-          <entry key="Solidity file" value="10458" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="babelrc" value="1" />
-          <entry key="js" value="10" />
-          <entry key="json" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="10" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="marketplace" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4061">
-              <caret line="280" column="16" selection-start-line="280" selection-start-column="16" selection-end-line="280" selection-end-column="16" />
+            <state relative-caret-position="1207">
+              <caret line="71" column="17" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!block;n#addFile#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#createOrder#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#approveOrder#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#closeOrder#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#searchOrder#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#canselOrder#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#addDepositArbitrator#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#becomeANarbitrator#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#newArbitrator#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#callArbitrator#0;n#MarketPlace#0" />
+                <element signature="n#!!block;n#setArbitr#0;n#MarketPlace#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/MarketPlase.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7327">
-              <caret line="432" selection-start-line="432" selection-end-line="432" />
+            <state relative-caret-position="258">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding>
                 <element signature="e#15#63#0" expanded="true" />
               </folding>
@@ -164,7 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>await MarketContract.addFile(</find>
       <find>addFileCallback</find>
       <find>FileID</find>
       <find>eventContractHendler</find>
@@ -192,8 +164,9 @@
       <find>sellerFileIDs</find>
       <find>allArbitrator</find>
       <find>who_arbitr</find>
-      <find>DisputVoting</find>
       <find>arbitrBrahlo</find>
+      <find>DisputVoting</find>
+      <find>_stringWord</find>
     </findStrings>
     <replaceStrings>
       <replace>{</replace>
@@ -213,21 +186,8 @@
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/package.json" />
-    </packageJsonPaths>
-  </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="846" />
     <option name="width" value="834" />
     <option name="height" value="1050" />
   </component>
@@ -267,6 +227,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/victor/Documents/Blockchain/week7/marketplace/test/MarketPlase.js" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
@@ -307,9 +268,10 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48244274" visible="true" weight="0.2826618" />
-      <window_info id="Structure" order="1" sideWeight="0.51755726" side_tool="true" visible="true" weight="0.2826618" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4774775" visible="true" weight="0.2893773" />
+      <window_info id="Structure" order="1" sideWeight="0.5225225" side_tool="true" visible="true" weight="0.2893773" />
       <window_info id="Favorites" order="2" sideWeight="0.51141554" side_tool="true" weight="0.3809524" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -318,7 +280,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31347963" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.3155695" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4993895" visible="true" weight="0.53605014" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50061053" side_tool="true" weight="0.43782654" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -329,9 +291,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../week3/voting/contracts/anonymousVoting.sol">
@@ -370,17 +329,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/MarketPlace.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4061">
-          <caret line="280" column="16" selection-start-line="280" selection-start-column="16" selection-end-line="280" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/MarketPlase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7327">
-          <caret line="432" selection-start-line="432" selection-end-line="432" />
+        <state relative-caret-position="1207">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="17" />
           <folding>
-            <element signature="e#15#63#0" expanded="true" />
+            <element signature="n#!!block;n#addFile#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#createOrder#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#approveOrder#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#closeOrder#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#searchOrder#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#canselOrder#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#addDepositArbitrator#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#becomeANarbitrator#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#newArbitrator#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#callArbitrator#0;n#MarketPlace#0" />
+            <element signature="n#!!block;n#setArbitr#0;n#MarketPlace#0" />
           </folding>
         </state>
       </provider>
@@ -429,6 +391,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Migrations.sol">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/MarketPlase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="e#15#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
